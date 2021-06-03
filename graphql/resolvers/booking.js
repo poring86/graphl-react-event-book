@@ -8,7 +8,7 @@ module.exports = {
             throw new Error("Unauhenticated!");
         }
         try {
-            const bookings = await Booking.find();
+            const bookings = await Booking.find({ user: req.userId });
             return bookings.map((booking) => {
                 return transformBooking(booking);
             });
@@ -28,7 +28,7 @@ module.exports = {
         const result = await booking.save();
         return transformBooking(result);
     },
-    cancelBooking: async (args) => {
+    cancelBooking: async (args, req) => {
         if (!req.isAuth) {
             throw new Error("Unauthenticated!");
         }
