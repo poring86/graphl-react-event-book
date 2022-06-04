@@ -10,8 +10,6 @@ const isAuth = require("./middleware/is-auth");
 
 const app = express();
 
-// const events = [];
-
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
